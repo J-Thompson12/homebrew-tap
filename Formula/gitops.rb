@@ -5,63 +5,71 @@
 class Gitops < Formula
   desc "GitOps support for Kubernetes"
   homepage "https://docs.gitops.weave.works/docs/getting-started"
-  version "0.3.8-rc3"
+  version "0.3.8-rc4"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc3/gitops-darwin-arm64"
-      sha256 "e90fc0b07eb6ce7d9967f7a6f0fbc43d27b354d9f1e8255e3478b035cd8eb863"
+    if Hardware::CPU.intel?
+      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc4/gitops-darwin-x86_64"
+      sha256 "33134bfaeadaf3f9f00e07d5027ec40027ea2eb9305e308eb4a0c70a5710c223"
 
       def install
         bin.install "gitops"
-        output = Utils.popen_read("#{bin}/gitops completion bash")
-        (bash_completion/"gitops").write output
-        output = Utils.popen_read("#{bin}/eksctl completion zsh")
-        (zsh_completion/"_gitops").write output
+        chmod +x gitops
+        sudo mv ./gitops /usr/local/bin/gitops
+        bash_output = Utils.safe_popen_read(bin/"gitops", "completion", "bash")
+        (bash_completion/"gitops").write bash_output
+        zsh_output = Utils.safe_popen_read(bin/"gitops", "completion", "zsh")
+        (zsh_completion/"_gitops").write zsh_output
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc3/gitops-darwin-x86_64"
-      sha256 "a45ddf67ad5b7bb2b56fcf4040e1c5bd3c6864152683bf8f789f3fc99ad0e8cb"
+    if Hardware::CPU.arm?
+      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc4/gitops-darwin-arm64"
+      sha256 "23a1d2ecafe225bdb350a5cf56be99f280579244e2e27b56c7271da4e85f22fa"
 
       def install
         bin.install "gitops"
-        output = Utils.popen_read("#{bin}/gitops completion bash")
-        (bash_completion/"gitops").write output
-        output = Utils.popen_read("#{bin}/eksctl completion zsh")
-        (zsh_completion/"_gitops").write output
+        chmod +x gitops
+        sudo mv ./gitops /usr/local/bin/gitops
+        bash_output = Utils.safe_popen_read(bin/"gitops", "completion", "bash")
+        (bash_completion/"gitops").write bash_output
+        zsh_output = Utils.safe_popen_read(bin/"gitops", "completion", "zsh")
+        (zsh_completion/"_gitops").write zsh_output
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
-      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc3/gitops-linux-x86_64"
-      sha256 "e04abacf086c995eb8bf8c23e57cc8eed64a5289c50861ed63a68de185f1fc61"
+      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc4/gitops-linux-x86_64"
+      sha256 "797da0adf92565ec7ce5e399273fe75fa0a984ca4330d1c19d100fee185581ff"
 
       def install
         bin.install "gitops"
-        output = Utils.popen_read("#{bin}/gitops completion bash")
-        (bash_completion/"gitops").write output
-        output = Utils.popen_read("#{bin}/eksctl completion zsh")
-        (zsh_completion/"_gitops").write output
+        chmod +x gitops
+        sudo mv ./gitops /usr/local/bin/gitops
+        bash_output = Utils.safe_popen_read(bin/"gitops", "completion", "bash")
+        (bash_completion/"gitops").write bash_output
+        zsh_output = Utils.safe_popen_read(bin/"gitops", "completion", "zsh")
+        (zsh_completion/"_gitops").write zsh_output
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc3/gitops-linux-arm64"
-      sha256 "01053f85839607893301a604d74fd25bfb553589b9c1137ba11db8be5ced30c9"
+      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc4/gitops-linux-arm64"
+      sha256 "cd483495b507bb935bfc547e5d57ebbab84f4010b0568733b04c634ec5c2e82d"
 
       def install
         bin.install "gitops"
-        output = Utils.popen_read("#{bin}/gitops completion bash")
-        (bash_completion/"gitops").write output
-        output = Utils.popen_read("#{bin}/eksctl completion zsh")
-        (zsh_completion/"_gitops").write output
+        chmod +x gitops
+        sudo mv ./gitops /usr/local/bin/gitops
+        bash_output = Utils.safe_popen_read(bin/"gitops", "completion", "bash")
+        (bash_completion/"gitops").write bash_output
+        zsh_output = Utils.safe_popen_read(bin/"gitops", "completion", "zsh")
+        (zsh_completion/"_gitops").write zsh_output
       end
     end
   end
 
   test do
-    system "#{bin}/gitops --version"
+    system "#{bin}/gitops version"
   end
 end
