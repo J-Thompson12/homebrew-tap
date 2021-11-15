@@ -5,58 +5,58 @@
 class Gitops < Formula
   desc "GitOps support for Kubernetes"
   homepage "https://docs.gitops.weave.works/docs/getting-started"
-  version "0.3.8-rc1"
+  version "0.3.8-rc2"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc1/gitops-darwin-arm64"
-      sha256 "efa4187382153f1e52aefb20c04ef8757f85c081aeda0253b466556579c7d7c2"
+    if Hardware::CPU.intel?
+      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc2/gitops-darwin-x86_64"
+      sha256 "017437cd3dbde7150a7715c6d73aeb1e0f8d1b6547788ce540355ae5f75966ff"
 
       def install
         bin.install "gitops"
         bash_output = Utils.safe_popen_read(bin/"gitops", "completion", "bash")
         (bash_completion/"gitops").write bash_output
         zsh_output = Utils.safe_popen_read(bin/"gitops", "completion", "zsh")
-        (zsh_completion/"gitops").write zsh_output
+        (zsh_completion/"_gitops").write zsh_output
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc1/gitops-darwin-x86_64"
-      sha256 "8c86e33e41964084e6179417646d8a3a759ebb9eacd7806a600f526f90f567c7"
+    if Hardware::CPU.arm?
+      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc2/gitops-darwin-arm64"
+      sha256 "bc9eb917dc27f69195a14a390dc37903b68ffa585563314de19834b7fb9b87e3"
 
       def install
         bin.install "gitops"
         bash_output = Utils.safe_popen_read(bin/"gitops", "completion", "bash")
         (bash_completion/"gitops").write bash_output
         zsh_output = Utils.safe_popen_read(bin/"gitops", "completion", "zsh")
-        (zsh_completion/"gitops").write zsh_output
+        (zsh_completion/"_gitops").write zsh_output
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
-      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc1/gitops-linux-x86_64"
-      sha256 "3d145121578515c654f8a10ab936f34126a13ba3a5ecb525ec382a1bdd71a746"
+      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc2/gitops-linux-x86_64"
+      sha256 "a7de49d431022251c6a9573b7b1aac07540e7f8afcec2e6725269d855752a9f7"
 
       def install
         bin.install "gitops"
         bash_output = Utils.safe_popen_read(bin/"gitops", "completion", "bash")
         (bash_completion/"gitops").write bash_output
         zsh_output = Utils.safe_popen_read(bin/"gitops", "completion", "zsh")
-        (zsh_completion/"gitops").write zsh_output
+        (zsh_completion/"_gitops").write zsh_output
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc1/gitops-linux-arm64"
-      sha256 "21f0ecd6a1f94c95495264442707fef8fa832d600e953b1d391f7eafcdea6873"
+      url "https://github.com/J-Thompson12/weave-gitops/releases/download/v0.3.8-rc2/gitops-linux-arm64"
+      sha256 "df47fb79b03d1532fec8ae52c7bd3ae8ee17f786d70e44abd43fd3aceb5615af"
 
       def install
         bin.install "gitops"
         bash_output = Utils.safe_popen_read(bin/"gitops", "completion", "bash")
         (bash_completion/"gitops").write bash_output
         zsh_output = Utils.safe_popen_read(bin/"gitops", "completion", "zsh")
-        (zsh_completion/"gitops").write zsh_output
+        (zsh_completion/"_gitops").write zsh_output
       end
     end
   end
