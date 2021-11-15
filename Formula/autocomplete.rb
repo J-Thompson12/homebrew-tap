@@ -5,12 +5,12 @@
 class Autocomplete < Formula
   desc "GitOps support for Kubernetes"
   homepage "https://docs.gitops.weave.works/docs/getting-started"
-  version "0.5.0"
+  version "0.6.0"
 
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/J-Thompson12/autocomplete/releases/download/v0.5.0/autocomplete-darwin-x86_64"
-      sha256 "cf1fa0bc0b1f4d574f15b32df52aab247a710e5606fc02ad8416e925df62aea9"
+    if Hardware::CPU.arm?
+      url "https://github.com/J-Thompson12/autocomplete/releases/download/v0.6.0/autocomplete-darwin-arm64"
+      sha256 "9e1397b635d2083b2e8d11222f186c59ae0f22b72010e2e6798378e1eaab6d15"
 
       def install
         bin.install "autocomplete"
@@ -20,9 +20,9 @@ class Autocomplete < Formula
         (zsh_completion/"_autocomplete").write zsh_output
       end
     end
-    if Hardware::CPU.arm?
-      url "https://github.com/J-Thompson12/autocomplete/releases/download/v0.5.0/autocomplete-darwin-arm64"
-      sha256 "c1b9a98b3e1eed0e094e5dc4ab200acedeef0f6f646e32a3724a771574078475"
+    if Hardware::CPU.intel?
+      url "https://github.com/J-Thompson12/autocomplete/releases/download/v0.6.0/autocomplete-darwin-x86_64"
+      sha256 "8df8cdd0b8d5f1d6fa0a4d232c5eee581f02fe25922030482d385e8c1a8a11cf"
 
       def install
         bin.install "autocomplete"
@@ -36,8 +36,8 @@ class Autocomplete < Formula
 
   on_linux do
     if Hardware::CPU.intel?
-      url "https://github.com/J-Thompson12/autocomplete/releases/download/v0.5.0/autocomplete-linux-x86_64"
-      sha256 "b42d23ac3cd7f21cba2fd10ca18ab7a7379d0384dd8e8f29ba95ea2276e60641"
+      url "https://github.com/J-Thompson12/autocomplete/releases/download/v0.6.0/autocomplete-linux-x86_64"
+      sha256 "15abbae4bee49cd8c2557d0c00983c0e0a16e718aa966c30daeac39f8d611c6b"
 
       def install
         bin.install "autocomplete"
@@ -48,8 +48,8 @@ class Autocomplete < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/J-Thompson12/autocomplete/releases/download/v0.5.0/autocomplete-linux-arm64"
-      sha256 "30bf37630b33f37d1f0a593b1aefb18e44a5a85241fa43c6d801c86d57eaafbd"
+      url "https://github.com/J-Thompson12/autocomplete/releases/download/v0.6.0/autocomplete-linux-arm64"
+      sha256 "6eb70c763872bf5057aa17ca99ab3839eb6c34f7f1b4aea5458acabf01d086d7"
 
       def install
         bin.install "autocomplete"
